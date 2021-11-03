@@ -1,0 +1,92 @@
+<template>
+	<view>
+		<!-- 导航栏 -->
+		<myNavBar title="通讯录"></myNavBar>
+		<myListItem v-for="(item,index) in topList" :key="index" :title="item.title" :cover="item.cover"></myListItem>
+		
+		<!-- 此处需要注意，v-if 和 v-for 不能放在同一个标签中 -->
+		<block v-for="(item,index) in list" :key="index">
+			<view v-if="item.data.length>0">
+				<view class="py-2 px-3 border-bottom bg-light">
+					<text class="font-md text-dark">{{item.letter}}</text>
+				</view>
+				<myListItem v-for="(item2,index2) in item.data" :key="index2" :title="item2" cover="/static/images/mail/friend.png"></myListItem>
+			</view>
+		</block>
+	</view>
+</template>
+
+<script>
+	import myNavBar from '@/components/my-ui/my-nav-bar.vue'
+	import myListItem from '@/components/my-ui/my-list-item.vue'
+	export default {
+		data() {
+			return {
+				list:[
+					{
+						letter:'a',
+						data:[
+							"xxc",
+							"jmz"
+						]
+					},
+					{
+						letter:'a',
+						data:[
+							"xxc",
+							"jmz"
+						]
+					},
+					{
+						letter:'a',
+						data:[
+							"xxc",
+							"jmz"
+						]
+					},
+					{
+						letter:'a',
+						data:[
+							"xxc",
+							"jmz"
+						]
+					},
+					{
+						letter:'a',
+						data:[
+							
+						]
+					}
+				],
+				topList:[
+					{
+						title:"新的朋友",
+						cover:"/static/images/mail/friend.png",
+						event:""
+					},
+					{
+						title:"群聊",
+						cover:"/static/images/mail/group.png",
+						event:""
+					},
+					{
+						title:"标签",
+						cover:"/static/images/mail/tag.png",
+						event:""
+					}
+				]
+			}
+		},
+		components:{
+			myNavBar,
+			myListItem
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>

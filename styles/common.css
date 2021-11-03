@@ -1,0 +1,22 @@
+/* 1.页面背景色 */
+.page{
+    background-color: #EDEDED;
+    /* #ifndef APP-NVUE */
+    min-height: 100vh;
+    height:auto;
+    /* #endif */
+    /* #ifdef APP-NVUE */
+    /* 此处 flex:1 可以生效的原因是因为：nvue编译为H5、小程序时，会自动把页面默认布局设为flex、方向为垂直。当然开发者手动设置后会覆盖默认设置。*/
+    flex: 1;
+    /* #endif */
+}
+
+/* 2.主背景色（原谅绿） */
+.main-bg-color{
+    background-color: #08C060;
+    
+}
+/* 3.主文字色（原谅绿） */
+.main-text-color{
+    color:#08C060;
+}

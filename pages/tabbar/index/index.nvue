@@ -1,0 +1,185 @@
+ <template>
+	<view>
+		<!-- 导航栏 -->
+		<myNavBar title="我的微信" noReadNum="1" @loadSearchPopup="showPopup"></myNavBar>
+		
+		<!-- 置顶列表 -->
+		<block v-for="(item,index) in list" :key="index">
+			<my-chat-list v-if="item.istop" :chatData="item" :index="index" @loadLongPress="showLongPress"></my-chat-list>
+		</block>
+		
+		<!-- 非置顶列表 -->
+		<block v-for="(item,index) in list" :key="index">
+			<my-chat-list v-if="!item.istop" :chatData="item" :index="index" @loadLongPress="showLongPress"></my-chat-list>
+		</block>
+		
+		<!-- 弹出层 -->
+		<myPopup ref="popUp" :popHeight="computeMenuHeight" :popWidth="200" :index="propIndex">
+			<view class="flex flex-column" style="width: 200rpx;" :style="computeMenuStyle">
+				<!-- 此处加 flex-1 ，使得子元素可以均分父元素的的空间 -->
+				<view class="flex-1 flex align-center" hover-class="bg-hover-light" v-for="(item,index) in menus" :key="index" @click="clickEvent(item.event)">
+					<text class="font-md pl-2">{{item.name}}</text>
+				</view>
+			</view>
+		</myPopup>
+	</view>
+</template>
+
+<script>
+import myNavBar from '@/components/my-ui/my-nav-bar.vue'
+import myChatList from '@/components/my-ui/my-chat-list.vue'
+import myPopup from '@/components/my-ui/my-popup.vue'
+export default {
+	data() {
+		return {
+			propIndex:-1,
+			menus:[
+				{
+					name:'取消置顶',
+					event:'setTop'
+				},
+				{
+					name:'删除该聊天',
+					event:'delChat'
+				}
+			],
+			list:[
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc",
+					update_time:1567695767,
+					content:"哈哈哈哈哈",
+					noReadNum:1,
+					istop:true
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc123",
+					update_time:"14:00",
+					content:"哈哈哈哈哈",
+					istop:true
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc",
+					update_time:1635860156,
+					content:"哈哈哈哈哈",
+					noReadNum:3,
+					istop:true
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc",
+					update_time:"14:00",
+					content:"哈哈哈哈哈",
+					noReadNum:4,
+					istop:false
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc",
+					update_time:"14:00",
+					content:"哈哈哈哈哈",
+					noReadNum:4,
+					istop:false
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc",
+					update_time:"14:00",
+					content:"哈哈哈哈哈",
+					noReadNum:4,
+					istop:false
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"jmz",
+					update_time:"14:00",
+					content:"哈哈哈哈哈",
+					noReadNum:4,
+					istop:true
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc",
+					update_time:"14:00",
+					content:"哈哈哈哈哈",
+					noReadNum:4,
+					istop:false
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc",
+					update_time:"14:00",
+					content:"哈哈哈哈哈",
+					noReadNum:4,
+					istop:false
+				},
+				{
+					avatar:"/static/images/demo/demo.jpg",
+					nickName:"xxc",
+					update_time:"14:00",
+					content:"哈哈哈哈哈",
+					noReadNum:4,
+					istop:false
+				}
+			]
+		};
+	},
+	components:{
+		myNavBar,
+		myChatList,
+		myPopup
+	},
+	methods: {
+		showPopup(){
+			this.$refs.popUp.show();
+		},
+		showLongPress({x,y,index}){
+			this.propIndex = index
+			// 此处需要在长按事件触发时就 修改 menus 的值
+			let item = this.list[this.propIndex]
+			if(item.istop){
+				this.menus[0].name = '取消置顶'
+			}else{
+				this.menus[0].name = '设为置顶'
+			}
+			this.$refs.popUp.show(x,y);
+		},
+		// 分发菜单事件
+		clickEvent(event){
+			switch(event){
+				case "setTop":
+					this.setTop()
+					break;
+				case "delChat":	// 删除当前绘画
+					this.delChat()
+					break;
+			}
+			this.$refs.popUp.hide();
+		},
+		setTop(){
+			let item = this.list[this.propIndex]
+			item.istop = !item.istop
+		},
+		// 删除当前会话
+		delChat(){
+			this.list.splice(this.propIndex,1)
+		}
+	},
+	computed:{
+		// 动态获取菜单的高度
+		computeMenuHeight(){
+			let H = 100
+			return this.menus.length * H
+		},
+		// 获取菜单的样式
+		computeMenuStyle(){
+			return `height:${this.computeMenuHeight}rpx`
+		}
+	}
+};
+</script>
+
+<style>
+</style>

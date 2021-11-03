@@ -1,0 +1,59 @@
+<template>
+	<!-- 为根标签添加 page 类，使其布满整个屏幕，同时具有背景色 -->
+	<view class="page">
+		<!-- 导航栏 -->
+		<myNavBar title="发现"></myNavBar>
+		<myListItem title="朋友圈" :showRight="true">
+			<text slot="icon" class="iconfont font-lg py-1">&#xe601;</text>
+			<view slot="right" class="position-relative p-1">
+				<my-avatar src="/static/images/demo/demo.jpg" size="55"></my-avatar>
+				<text class="rounded-circle bg-danger position-absolute top-0 right-0" style="width: 20rpx;height: 20rpx;"></text>
+			</view>
+		</myListItem>
+		<myDivider></myDivider>
+		<myListItem title="扫一扫" :showRight="true">
+			<text slot="icon" class="iconfont font-lg py-1">&#xe62e;</text>
+		</myListItem>
+		<myListItem title="摇一摇" :showRight="true">
+			<text slot="icon" class="iconfont font-lg py-1">&#xe63f;</text>
+		</myListItem>
+		<myDivider></myDivider>
+		<myListItem title="看一看" :showRight="true">
+			<text slot="icon" class="iconfont font-lg py-1">&#xe60b;</text>
+		</myListItem>
+		<myListItem title="搜一搜" :showRight="true">
+			<text slot="icon" class="iconfont font-lg py-1">&#xe611;</text>
+		</myListItem>
+		<myDivider></myDivider>
+		<myListItem title="购物" :showRight="true">
+			<text slot="icon" class="iconfont font-lg py-1">&#xe899;</text>
+		</myListItem>
+	</view>
+</template>
+
+<script>
+	import myNavBar from '@/components/my-ui/my-nav-bar.vue'
+	import myListItem from '@/components/my-ui/my-list-item.vue'
+	import myAvatar from '@/components/my-ui/my-avatar.vue'
+	import myDivider from '@/components/my-ui/my-divider.vue'
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		components:{
+			myNavBar,
+			myListItem,
+			myAvatar,
+			myDivider
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>

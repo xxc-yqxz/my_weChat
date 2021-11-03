@@ -1,0 +1,61 @@
+<template>
+	<view class="page">
+		<myNavBar bgColor="bg-white">
+			<myIconButton slot="right" :icon="'\ue61c'" @click="loadExtendPopup"></myIconButton>
+		</myNavBar>
+		<myListItem cover="/static/images/demo/demo.jpg" coverSize="120" showRight>
+			<view class="flex flex-column ">
+				<text class="font-md font-weight-bold">语轻星子</text>
+				<text class="font-sm mt-2 text-hover-light">微信号:xxcijmz</text>
+			</view>
+			<view slot="right">
+				<text class="iconfont font-md text-light-muted">&#xe62e;</text>
+			</view>
+		</myListItem>
+		<myDivider></myDivider>
+		<myListItem title="支付" showRight>
+			<text slot="icon" class="iconfont font-lg py-1">&#xe63d;</text>
+		</myListItem>
+		<myDivider></myDivider>
+		<myListItem title="收藏" showRight>
+			<text slot="icon" class="iconfont font-lg py-1">&#xea2d;</text>
+		</myListItem>
+		<myListItem title="相册" showRight>
+			<text slot="icon" class="iconfont font-lg py-1">&#xe60a;</text>
+		</myListItem>
+		<myListItem title="表情" showRight>
+			<text slot="icon" class="iconfont font-lg py-1">&#xe8ab;</text>
+		</myListItem>
+		<myDivider></myDivider>
+		<myListItem title="设置" showRight>
+			<text slot="icon" class="iconfont font-lg py-1">&#xea2d;</text>
+		</myListItem>
+	</view>
+</template>
+
+<script>
+	import myNavBar from '@/components/my-ui/my-nav-bar.vue'
+	import myIconButton from '@/components/my-ui/my-icon-button.vue'
+	import myListItem from '@/components/my-ui/my-list-item.vue'
+	import myDivider from '@/components/my-ui/my-divider.vue'
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		},
+		components:{
+			myNavBar,
+			myIconButton,
+			myListItem,
+			myDivider
+		}
+	}
+</script>
+
+<style>
+
+</style>
